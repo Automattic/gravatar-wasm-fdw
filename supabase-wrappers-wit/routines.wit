@@ -1,6 +1,6 @@
 interface routines {
     use types.{
-        cell, row, context, fdw-error, fdw-result,
+        cell, row, import-foreign-schema-stmt, context, fdw-error, fdw-result,
     };
 
     // ----------------------------------------------
@@ -32,4 +32,10 @@ interface routines {
     ) -> fdw-result;
     delete: func(ctx: borrow<context>, rowid: cell) -> fdw-result;
     end-modify: func(ctx: borrow<context>) -> fdw-result;
+
+    // import foreign schema
+    import-foreign-schema: func(
+        ctx: borrow<context>,
+        stmt: import-foreign-schema-stmt,
+    ) -> result<list<string>, fdw-error>;
 }

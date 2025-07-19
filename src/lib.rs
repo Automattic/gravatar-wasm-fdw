@@ -12,7 +12,7 @@ use bindings::{
     supabase::wrappers::{
         http,
         time,
-        types::{Cell, Context, FdwError, FdwResult, OptionsType, Row, TypeOid, Value},
+        types::{Cell, Context, FdwError, FdwResult, ImportForeignSchemaStmt, OptionsType, Row, TypeOid, Value},
         utils,
     },
 };
@@ -68,7 +68,7 @@ impl Guest for GravatarFdw {
         Self::init_instance();
         let this = Self::this_mut();
 
-        let opts = ctx.get_options(OptionsType::Server);
+        let opts = ctx.get_options(&OptionsType::Server);
         this.base_url = opts.require_or("api_url", "https://api.gravatar.com/v3/profiles");
 
         // Initialize basic headers
@@ -108,7 +108,7 @@ impl Guest for GravatarFdw {
         this.scanned_profiles.clear();
         this.scan_index = 0;
 
-        let opts = ctx.get_options(OptionsType::Table);
+        let opts = ctx.get_options(&OptionsType::Table);
         let table = opts.require_or("table", Self::PROFILES_OBJECT);
 
         if table != Self::PROFILES_OBJECT {
@@ -304,6 +304,46 @@ impl Guest for GravatarFdw {
         Ok(())
     }
 
+    fn import_foreign_schema(
+        _ctx: &Context,
+        stmt: ImportForeignSchemaStmt,
+    ) -> Result<Vec<String>, FdwError> {
+        let ret = vec![format!(
+            r#"create foreign table if not exists profiles (
+                    hash text,
+                    email text,
+                    display_name text,
+                    profile_url text,
+                    avatar_url text,
+                    avatar_alt_text text,
+                    location text,
+                    description text,
+                    job_title text,
+                    company text,
+                    verified_accounts jsonb,
+                    pronunciation text,
+                    pronouns text,
+                    timezone text,
+                    language jsonb,
+                    first_name text,
+                    last_name text,
+                    is_organization boolean,
+                    links jsonb,
+                    interests jsonb,
+                    payments jsonb,
+                    contact_info jsonb,
+                    number_verified_accounts bigint,
+                    last_profile_edit timestamp,
+                    registration_date timestamp,
+                    attrs jsonb
+                )
+                server {} options (
+                    table 'profiles'
+                )"#,
+            stmt.server_name,
+        )];
+        Ok(ret)
+    }
 }
 
 bindings::export!(GravatarFdw with_types_in bindings);

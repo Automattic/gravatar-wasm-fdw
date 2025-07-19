@@ -13,6 +13,8 @@ interface types {
         timestamp,
         timestamptz,
         json,
+        uuid,
+        other(string),
     }
 
     variant cell {
@@ -31,6 +33,8 @@ interface types {
         timestamp(s64),
         timestamptz(s64),
         json(string),
+        uuid(string),
+        other(string),
     }
 
     resource row {
@@ -97,6 +101,8 @@ interface types {
     variant options-type {
         server,
         table,
+        import-schema,
+        other(string),
     }
 
     resource options {
@@ -105,6 +111,20 @@ interface types {
         get: func(key: string) -> option<string>;
         require: func(key: string) -> result<string, fdw-error>;
         require-or: func(key: string, default: string) -> string;
+    }
+
+    variant import-schema-type {
+        all,
+        limit-to,
+        except,
+    }
+
+    record import-foreign-schema-stmt {
+        server-name: string,
+        remote-schema: string,
+        local-schema: string,
+        list-type: import-schema-type,
+        table-list: list<string>,
     }
 
     resource context {
