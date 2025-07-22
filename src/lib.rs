@@ -335,7 +335,7 @@ impl Guest for GravatarFdw {
                     number_verified_accounts bigint,
                     last_profile_edit timestamp,
                     registration_date timestamp,
-                    attrs jsonb
+                    json jsonb
                 )
                 server {} options (
                     table 'profiles'
