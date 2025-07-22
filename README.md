@@ -44,10 +44,10 @@ create
 server gravatar_server
   foreign data wrapper wasm_wrapper
   options (
-    fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.1.0/gravatar_fdw.wasm',
+    fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.2.0/gravatar_fdw.wasm',
     fdw_package_name 'automattic:gravatar-fdw',
-    fdw_package_version '0.1.0',
-    fdw_package_checksum 'dddd85790810402baaf9c2b4ddc0172c204071307f836cce7d319789b62cf153',
+    fdw_package_version '0.2.0',
+    fdw_package_checksum '5273ae07e66bc2f1bb5a23d7b9e0342463971691e587bbd6f9466814a8bac11c',
     api_key_id 'your-vault-secret-uuid-here'
   );
 
@@ -55,10 +55,10 @@ server gravatar_server
 -- create server gravatar_server
 --   foreign data wrapper wasm_wrapper
 --   options (
---     fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.1.0/gravatar_fdw.wasm',
+--     fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.2.0/gravatar_fdw.wasm',
 --     fdw_package_name 'automattic:gravatar-fdw',
---     fdw_package_version '0.1.0',
---     fdw_package_checksum 'dddd85790810402baaf9c2b4ddc0172c204071307f836cce7d319789b62cf153',
+--     fdw_package_version '0.2.0',
+--     fdw_package_checksum '5273ae07e66bc2f1bb5a23d7b9e0342463971691e587bbd6f9466814a8bac11c',
 --     api_key 'your-direct-api-key-here'
 --   );
 
@@ -66,10 +66,10 @@ server gravatar_server
 -- create server gravatar_server
 --   foreign data wrapper wasm_wrapper
 --   options (
---     fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.1.0/gravatar_fdw.wasm',
+--     fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.2.0/gravatar_fdw.wasm',
 --     fdw_package_name 'automattic:gravatar-fdw',
---     fdw_package_version '0.1.0',
---     fdw_package_checksum 'dddd85790810402baaf9c2b4ddc0172c204071307f836cce7d319789b62cf153'
+--     fdw_package_version '0.2.0',
+--     fdw_package_checksum '5273ae07e66bc2f1bb5a23d7b9e0342463971691e587bbd6f9466814a8bac11c'
 --   );
 
 -- Create required schemas
