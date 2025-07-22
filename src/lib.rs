@@ -332,7 +332,7 @@ impl Guest for GravatarFdw {
                     interests jsonb,
                     payments jsonb,
                     contact_info jsonb,
-                    number_verified_accounts bigint,
+                    number_verified_accounts int,
                     last_profile_edit timestamp,
                     registration_date timestamp,
                     json jsonb
