@@ -324,7 +324,7 @@ impl Guest for GravatarFdw {
                     pronunciation text,
                     pronouns text,
                     timezone text,
-                    language jsonb,
+                    languages jsonb,
                     first_name text,
                     last_name text,
                     is_organization boolean,
