@@ -80,38 +80,10 @@ server gravatar_server
 -- Create schema and tables
 create schema if not exists gravatar;
 
-CREATE
-FOREIGN TABLE gravatar.profiles (
-  hash text,
-  email text,
-  display_name text,
-  profile_url text,
-  avatar_url text,
-  avatar_alt_text text,
-  location text,
-  description text,
-  job_title text,
-  company text,
-  verified_accounts jsonb,
-  pronunciation text,
-  pronouns text,
-  timezone text,
-  first_name text,
-  last_name text,
-  is_organization bool,
-  links jsonb,
-  interests jsonb,
-  payments jsonb,
-  contact_info jsonb,
-  number_verified_accounts int,
-  last_profile_edit timestamp,
-  registration_date timestamp,
-  json jsonb  -- Complete profile data as JSON
-)
-SERVER gravatar_server
-OPTIONS (
-  table 'profiles'
-);
+-- Create tables by importing foreign schemas
+import foreign schema gravatar
+  from server gravatar_server
+  into gravatar;
 
 ```
 
@@ -172,7 +144,6 @@ WHERE email = 'user@example.com';
   - Use separate queries for each email address
   - Multiple email conditions will return an error (when detected – see below)
   - Using `OR` like `email = 'a@example.com' OR email = 'b@example.com'` is not supported and _most likely_ will return zero results. This is a limitation on Wrappers library in which our FDW implementation does not receive any WHERE clauses.
-- No automatic schema import (yet)
 - Read-only (no INSERT/UPDATE/DELETE operations)
 - Any request failure implies three retries with exponential backoff.
     - This is Wrapper's default behaviour and can't be disabled.

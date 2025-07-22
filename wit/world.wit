@@ -1,4 +1,4 @@
-package automattic:gravatar-fdw@0.1.0;
+package automattic:gravatar-fdw@0.2.0;
 
 world gravatar {
     import supabase:wrappers/http@0.2.0;

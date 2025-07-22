@@ -28,6 +28,10 @@ You need to set up your Rust environment and install the WebAssembly Component M
 - Install [docker](https://docs.docker.com/desktop/), and **make sure it's running**.
 - Install [supabase cli](https://supabase.com/docs/guides/local-development/cli/getting-started). Required for local environment setup.
 
+## Deployment
+
+Add a version tag and push it with: `git tag -f vX.Y.Z && git push -f origin tag vX.Y.Z`.
+
 ## Spin up local environment
 
 Start the local environment using `supabase` cli.
@@ -53,7 +57,7 @@ create server gravatar_server
   options (
     fdw_package_url 'file:///gravatar_fdw.wasm', -- IMPORTANT: Use this in your testing environment.
     fdw_package_name 'automattic:gravatar-fdw',
-    fdw_package_version '0.1.0'
+    fdw_package_version '0.2.0'
     -- ... your preferred API Key approach (see README.md)
   );
 
