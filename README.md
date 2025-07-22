@@ -40,8 +40,7 @@ foreign data wrapper wasm_wrapper
 
 -- Recommended: Add Gravatar FDW server (with API key from Vault)
 select vault.create_secret('your-gravatar-api-key-value-goes-here', 'gravatar-api-key');
-create
-server gravatar_server
+create server gravatar_server
   foreign data wrapper wasm_wrapper
   options (
     fdw_package_url 'https://github.com/Automattic/gravatar-wasm-fdw/releases/download/v0.2.0/gravatar_fdw.wasm',
