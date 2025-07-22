@@ -1,4 +1,4 @@
-package supabase:wrappers@0.1.0;
+package supabase:wrappers@0.2.0;
 
 world wrappers {
     import http;
