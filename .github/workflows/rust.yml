@@ -1,0 +1,19 @@
+const hash = getGravatarHash('user@example.com');
+ 
+const profileUrl = `https://api.gravatar.com/v3/profiles/${hash}`;
+ 
+// With authentication (recommended)
+ 
+fetch(profileUrl, {
+ 
+  headers: {
+ 
+    'Authorization': 'Bearer YOUR_API_KEY'
+ 
+  }
+ 
+})
+ 
+.then(response => response.json())
+ 
+.then(profile => console.log(profile));
